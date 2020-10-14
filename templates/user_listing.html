@@ -3,3 +3,21 @@
 {% block title %}
 User Listing
 {% endblock %}
+
+{% block header %}
+<h1 class="text-center">Users</h1>
+{% endblock %}
+
+{% block content %}
+<div class="list-group">
+
+{% for user in users %}
+    <a href="/users/{{ user.id }}" class="list-group-item list-group-item-action">{{ user.first_name }} {{ user.last_name }}</a>
+{% endfor %}
+
+</div>
+
+
+
+{% endblock %}
+
