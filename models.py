@@ -33,8 +33,12 @@ def example_data():
     User.query.delete()
 
     # Add users
-    u1 = User(first_name='Mack', last_name='Cooper')
-    u2 = User(first_name='Andrew', last_name='Dietrich')
+    u1 = User(first_name='Mack',
+              last_name='Cooper',
+              image_url='https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
+    u2 = User(first_name='Andrew',
+              last_name='Dietrich',
+              image_url='https://www.postplanner.com/hs-fs/hub/513577/file-2886416984-png/blog-files/facebook-profile-pic-vs-cover-photo-sq.png?width=250&height=250&name=facebook-profile-pic-vs-cover-photo-sq.png')
 
     db.session.add_all([u1, u2])
     db.session.commit()
