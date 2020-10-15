@@ -10,7 +10,7 @@ Edit a user
 
 {% block content %}
 
-<form action="/users/{{ user.id }}" method="POST">>
+<form action="/users/{{ user.id }}/edit" method="POST">
     <div class="form-group">
       <label for="first">First name</label>
       <input type="text" class="form-control" name="first-name" value="{{ user.first_name }}">

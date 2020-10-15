@@ -18,12 +18,28 @@ class User(db.Model):
     last_name = db.Column(db.String(50),
                           nullable=False)
     image_url = db.Column(db.Text,
-                          nullable=True,
-                          default='https://immedilet-invest.com/wp-content/uploads/2016/01/user-placeholder.jpg')
+                          nullable=True)
 
     def __repr__(self):
         s = self
         return f"User {s.id} {s.first_name} {s.last_name} {s.image_url}"
+
+    @staticmethod
+    def create_user(first_name, last_name, image_url):
+        new_user = User(first_name=first_name, last_name=last_name, image_url=image_url)
+        db.session.add(new_user)
+        db.session.commit()
+
+    def update_user(self, first_name, last_name, image_url):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.image_url = image_url
+        db.session.commit()
+
+    
+    def delete_user(self, user):
+        db.session.delete(user)
+        db.session.commit()
 
 
 def example_data():
@@ -50,12 +66,6 @@ def connect_db(app):
     db.app = app
     db.init_app(app)
 
-    db.drop_all()
-    db.create_all()
-
-    example_data()
-
-
 if __name__ == "__main__":
     # As a convenience, if we run this module interactively, it will leave
     # you in a state of being able to work with the database directly.
@@ -67,4 +77,5 @@ if __name__ == "__main__":
 
     db.drop_all()
     db.create_all()
+
     example_data()
