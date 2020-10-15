@@ -7,14 +7,31 @@
 
 {% block content %}
 
-<div class="media mt-4">
-    <img src="{{ user.image_url }}" alt="User Image Here" class="align-self-center mr-3 img-thumbnail rounded" width="100px" height="auto">
-    <div class="media-body">  
+<div class="media mt-4 flex-column align-items-center">
+    <img src="{{ user.image_url }}" 
+         alt="User Image Here" 
+         class="mr-3 img-thumbnail rounded-circle"
+         width="200px"  
+         height="auto">
+         
+    <div class="col text-center">  
         <h1>{{ user.first_name}} {{ user.last_name }}</h1> 
-        <a class="btn btn-primary btn-sm rounded" href="/users/{{ user.id }}/edit" role="button">Edit</a>
+        <a class="btn btn-primary btn-sm rounded" 
+           href="/users/{{ user.id }}/edit" 
+           role="button">Edit</a>
+           
         <form action="/users/{{ user.id }}/delete" method="POST" class="d-inline-block">
             <button type="submit" class="btn btn-danger btn-sm rounded">Delete</button>
         </form>
     </div>
 </div>
+<h2 class="text-center  mt-4">Posts</h2>
+
+<div class="list-group">
+
+    {% for post in user.posts %}
+        <a href="/posts/{{ post.id }}" class="list-group-item list-group-item-action">{{ post.title }}</a>
+    {% endfor %}
+</div>
+<a class="btn btn-primary btn-sm rounded mt-2" href="/users/{{ user.id }}/posts/new" role="button">Add Post</a>
 {% endblock %}
