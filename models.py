@@ -84,6 +84,19 @@ class Post(db.Model):
         new_post = Post(title=title, content=content, user_id=user_id)
         db.session.add(new_post)
         db.session.commit()
+    
+    def edit_post(self, title, content):
+        self.title = title
+        self.content = content
+        
+        db.session.commit()
+
+    @staticmethod
+    def delete_post(post):
+        db.session.delete(post)
+        db.session.commit()
+
+    
 
 
 def example_data():

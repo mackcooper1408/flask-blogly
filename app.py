@@ -101,7 +101,36 @@ def process_post_form(user_id):
     return redirect(f"/users/{user_id}")
 
 
-# @app.route("/posts/<int:post_id>")
-# @app.route("/posts/<int:post_id>/edit")
-# @app.route("/posts/<int:post_id>/edit", methods=["POST"])
-# @app.route("/posts/<int:post_id>/delete", methods=["POST"])
+@app.route("/posts/<int:post_id>")
+def show_post_details(post_id):
+
+    post = Post.query.get_or_404(post_id)
+
+    return render_template("post_detail.html", post=post)
+
+@app.route("/posts/<int:post_id>/edit")
+def show_edit_post(post_id):
+
+    post = Post.query.get_or_404(post_id)
+
+    return render_template("post_edit.html", post=post)
+
+@app.route("/posts/<int:post_id>/edit", methods=["POST"])
+def process_edit_post_form(post_id):
+
+    post = Post.query.get_or_404(post_id)
+
+    title = request.form['title']
+    content = request.form['content']
+
+    post.edit_post(title, content)
+
+    return redirect(f"/posts/{post_id}")
+
+@app.route("/posts/<int:post_id>/delete", methods=["POST"])
+def process_delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+
+    Post.delete_post(post)
+
+    return redirect(f"/users/{post.user_id}")

@@ -5,7 +5,7 @@ Edit Post
 {% endblock %}
 
 {% block header %}
-<h1 class="text-center">Edit</h1>
+<h1 class="text-center">Edit Post</h1>
 {% endblock %}
 
 {% block content %}
@@ -23,11 +23,10 @@ Edit Post
       <label for="content">Content</label>
       <textarea class="form-control" 
                 name="content"
-                rows="3"
-                value="{{ post.title }}"></textarea>
+                rows="3">{{ post.content }}</textarea>
     </div>
-    <a class="btn btn-outline-primary rounded" href="/users/{{ user.id }}" role="button">Cancel</a>
-    <button type="submit" class="btn btn-primary rounded">Edit</button>
+    <a class="btn btn-outline-primary rounded" href="/posts/{{ post.id }}" role="button">Cancel</a>
+    <button type="submit" class="btn btn-primary rounded">Update</button>
   </form>
 
 {% endblock %}
