@@ -13,6 +13,11 @@
 <div class="container mx-0">
     <p class="border border-light p-2">{{ post.content }}</p>
     <p class="font-italic">{{ post.user.full_name }}</p>
+    <div class="row pl-3">Tags: 
+        {% for tag in post.tags %}
+        <a class="badge badge-info btn-sm m-1 rounded font-italic" href="/tags/{{ tag.id }}" role="button">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
     <div class="row">
         <div class="col-9">
             <a class="btn btn-outline-primary btn-sm rounded mt-2" href="/users/{{ post.user.id }}" role="button">Cancel</a>
